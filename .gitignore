@@ -1,0 +1,19 @@
+# Gradle
+.gradle/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Java
+*.class
+*.jar
+*.war
+
+# Claude
+.claude/
+
+# OS
+.DS_Store
