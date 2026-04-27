@@ -1,0 +1,5 @@
+apply plugin: 'application'
+
+application {
+    mainClass = 'com.inferencelab.gpuworker.GpuWorker'
+}

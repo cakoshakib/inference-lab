@@ -1,0 +1,5 @@
+rootProject.name = 'inference-lab'
+
+include 'workload-simulator'
+include 'gateway'
+include 'gpu-worker'
