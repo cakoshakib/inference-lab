@@ -4,4 +4,4 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public record InferenceRequest(String prompt, int maxTokens, int priority) {}
+public record StreamMetadata(String requestId, String status) {}

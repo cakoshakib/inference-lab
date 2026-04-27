@@ -11,5 +11,4 @@ public record InferenceStatusResponse(
     int maxTokens,
     int priority,
     int tokensGenerated,
-    String createdAt
-) {}
+    String createdAt) {}
