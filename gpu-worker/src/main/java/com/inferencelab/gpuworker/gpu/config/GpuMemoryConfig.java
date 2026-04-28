@@ -4,7 +4,4 @@ import lombok.Builder;
 
 @Builder
 public record GpuMemoryConfig(
-    long totalVramBytes,
-    long modelWeightBytes,
-    long kvCacheBytesPerToken,
-    long maxTokensPerRequest) {}
+    long totalVramBytes, long modelWeightBytes, long bytesPerToken, long maxTokensPerRequest) {}

@@ -1,15 +1,20 @@
 package com.inferencelab.gpuworker.gpu;
 
 import com.inferencelab.gpuworker.gpu.config.GpuConfig;
+import com.inferencelab.gpuworker.gpu.objects.ActiveSequence;
+import com.inferencelab.gpuworker.gpu.objects.BatchResult;
+import com.inferencelab.gpuworker.gpu.objects.TokenResult;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MockGpu {
 
   private GpuConfig config;
+  private long totalVramUsed;
 
   public MockGpu(GpuConfig config) {
     this.config = config;
+    this.totalVramUsed = config.memoryConfig().modelWeightBytes();
   }
 
   public BatchResult step(List<ActiveSequence> batch) {
@@ -32,6 +37,10 @@ public class MockGpu {
     List<TokenResult> tokenResults = new ArrayList<>();
     for (ActiveSequence seq : batch) {
       TokenResult tokenResult = processSequence(seq);
+      totalVramUsed += config.memoryConfig().bytesPerToken();
+      if (totalVramUsed > config.memoryConfig().totalVramBytes()) {
+        throw new RuntimeException("Out of VRAM");
+      }
       tokenResults.add(tokenResult);
     }
 

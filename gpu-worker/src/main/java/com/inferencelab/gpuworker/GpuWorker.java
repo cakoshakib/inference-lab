@@ -14,7 +14,7 @@ public class GpuWorker {
                 GpuMemoryConfig.builder()
                     .totalVramBytes(24 * 1024 * 1024 * 1024L) // 24 GB
                     .modelWeightBytes(10 * 1024 * 1024 * 1024L) // 10 GB
-                    .kvCacheBytesPerToken(10 * 1024 * 1024L) // 10 MB per token
+                    .bytesPerToken(10 * 1024 * 1024L) // 10 MB per token
                     .maxTokensPerRequest(2048)
                     .build())
             .computeConfig(
