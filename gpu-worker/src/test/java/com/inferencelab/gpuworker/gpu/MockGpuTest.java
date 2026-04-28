@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.inferencelab.gpuworker.gpu.config.GpuComputeConfig;
 import com.inferencelab.gpuworker.gpu.config.GpuConfig;
 import com.inferencelab.gpuworker.gpu.config.GpuMemoryConfig;
+import com.inferencelab.gpuworker.gpu.objects.ActiveSequence;
+import com.inferencelab.gpuworker.gpu.objects.BatchResult;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +20,7 @@ class MockGpuTest {
             GpuMemoryConfig.builder()
                 .totalVramBytes(1_000_000)
                 .modelWeightBytes(100_000)
-                .kvCacheBytesPerToken(100)
+                .bytesPerToken(100)
                 .maxTokensPerRequest(100)
                 .build())
         .computeConfig(
@@ -37,7 +39,7 @@ class MockGpuTest {
     MockGpu gpu = new MockGpu(defaultConfig());
 
     BatchResult result = gpu.step(List.of(new ActiveSequence(1, 0), new ActiveSequence(2, 0)));
-    System.out.println(result.tokenResults().get(0).token());
+    System.out.println("Token result: " + result.tokenResults().get(0).token());
 
     assertEquals(2, result.tokenResults().size());
     assertEquals(1, result.tokenResults().get(0).sequenceId());
@@ -77,7 +79,7 @@ class MockGpuTest {
                 GpuMemoryConfig.builder()
                     .totalVramBytes(1_000_000)
                     .modelWeightBytes(100_000)
-                    .kvCacheBytesPerToken(100)
+                    .bytesPerToken(100)
                     .maxTokensPerRequest(100)
                     .build())
             .computeConfig(
