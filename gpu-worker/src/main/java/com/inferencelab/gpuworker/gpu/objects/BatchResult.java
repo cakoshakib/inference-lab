@@ -1,4 +1,4 @@
-package com.inferencelab.gpuworker.gpu;
+package com.inferencelab.gpuworker.gpu.objects;
 
 import java.util.List;
 
