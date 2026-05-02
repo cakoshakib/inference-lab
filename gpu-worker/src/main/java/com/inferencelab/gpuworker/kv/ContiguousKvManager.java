@@ -66,13 +66,13 @@ public class ContiguousKvManager implements KvManager {
     for (Map.Entry<Long, VramRegion> startAndRegion : allocatedRegions.entrySet()) {
       long openSpace = startAndRegion.getKey() - prevEnd;
       if (openSpace >= minBytes) {
-        return Optional.of(new VramRegion(prevEnd, minBytes));
+        return Optional.of(new VramRegion(prevEnd, prevEnd + minBytes));
       }
       prevEnd = startAndRegion.getValue().endByte();
     }
     // Handle tail
     if (prevEnd + minBytes < memoryConfig.totalVramBytes()) {
-      return Optional.of(new VramRegion(prevEnd, minBytes));
+      return Optional.of(new VramRegion(prevEnd, prevEnd + minBytes));
     }
     return Optional.empty();
   }
