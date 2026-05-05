@@ -7,6 +7,13 @@ build/
 .vscode/
 *.iml
 
+# Eclipse / JDTLS
+.project
+.classpath
+.settings/
+.factorypath
+bin/
+
 # Java
 *.class
 *.jar
